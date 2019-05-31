@@ -49,13 +49,10 @@ namespace Crypto
         }
 
         /*
-         * Magma cipher implementation
+         Реализация шифра магма 
          */
 
-        /// <summary>
-        /// Substitution Table
-        /// id-tc26-gost-28147-param-Z
-        /// </summary>
+        //Таблица замещения id-tc26-gost-28147-param-Z
         private readonly byte[][] _sBox =
         {
             //            0     1     2     3     4     5     6     7     8     9     A     B     C     D     E     F
@@ -100,6 +97,7 @@ namespace Crypto
             return result;
         }
 
+       
         private uint funcG(uint a, uint k)
         {
             uint c = a + k;
@@ -129,12 +127,48 @@ namespace Crypto
             uint[] subKeys = new uint[8];
             Array.Copy(key, keyR, key.Length);
             Array.Reverse(keyR);
+            //три раза с первого по восьмой и один раз с восьмого по первый.
             for (int i = 0; i < 8; i++)
             {
                 subKeys[i] = BitConverter.ToUInt32(keyR, i * 4);
             }
             Array.Reverse(subKeys);
             return subKeys;
+        }
+
+
+
+
+
+
+
+        public byte[] Dencrypt(byte[] data)
+        {
+            byte[] dataR = new byte[data.Length];
+            Array.Copy(data, dataR, data.Length);
+            Array.Reverse(dataR);
+
+            uint a0 = BitConverter.ToUInt32(dataR, 0);
+            uint a1 = BitConverter.ToUInt32(dataR, 4);
+
+            byte[] result = new byte[8];
+
+            for (int i = 31; i > 0; i--)
+            {
+                int keyIndex = (i < 24) ? (i % 8) : 7-(i % 8);
+                uint round = a1 ^ funcG(a0, _subKeys[keyIndex]);
+
+                a1 = a0;
+                a0 = round;
+            }
+
+            a1 = a1 ^ funcG(a0, _subKeys[0]);
+
+            Array.Copy(BitConverter.GetBytes(a0), 0, result, 0, 4);
+            Array.Copy(BitConverter.GetBytes(a1), 0, result, 4, 4);
+
+            Array.Reverse(result);
+            return result;
         }
     }
 }

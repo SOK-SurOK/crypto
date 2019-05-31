@@ -26,7 +26,7 @@ namespace Crypto
             switch (comboBoxVibor.SelectedIndex)
             {
                 case 0:
-                    magmaTest();
+                    magmaTest(true);
                     break;
                 default:
                     break;
@@ -34,10 +34,9 @@ namespace Crypto
         }
 
         
-        public void magmaTest()
+        public void magmaTest(bool E)
         {
             //byte[] _ref_key = Utils.Unpack("FFEEDDCCBBAA99887766554433221100F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF");
-            //byte[] _ref_key = Utils.StringToByteArray("FFEEDDCCBBAA99887766554433221100F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF");
             //byte[] _ref_plain = Utils.Unpack("FEDCBA9876543210");
             //byte[] _ref_cipher = Utils.Unpack("4EE901E5C2D8CA3D");
 
@@ -46,21 +45,28 @@ namespace Crypto
 
             if (ref_key.Length == 64)
             {
-                if (ref_plain.Length >= 16)
+                if (ref_plain.Length == 16)
                 {
                     if (ref_plain.Length % 2 == 0)
                     {
                         Magma cipher = new Magma();
                         cipher.SetKey(Utils.StringToByteArray(ref_key));
-                        byte[] result = cipher.Encrypt(Utils.StringToByteArray(ref_plain));
-
+                        if (E)
+                        {
+                            byte[] result = cipher.Encrypt(Utils.StringToByteArray(ref_plain));
+                            textBoxOut.Text = Utils.ByteArrayToString(result);
+                        }
+                        else
+                        {
+                            byte[] result = cipher.Dencrypt(Utils.StringToByteArray(ref_plain));
+                            textBoxOut.Text = Utils.ByteArrayToString(result);
+                        }
                         //CollectionAssert.AreEqual(_ref_cipher, result);//сравнение 2 массивов
-
-                        textBoxOut.Text = Utils.ByteArrayToString(result);
+                        
                     }
                     else
                     {
-                        MessageBox.Show("Неправильный 16 ввод !");
+                        MessageBox.Show("Введено не 64-битное выражение!");
                     }
                 }
                 else
@@ -81,17 +87,27 @@ namespace Crypto
 
         private void ButtonDecrypto_Click(object sender, EventArgs e)
         {
-
+            switch (comboBoxVibor.SelectedIndex)
+            {
+                case 0:
+                    magmaTest(false);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
+
+
+
+
+
     static class Utils
     {
-        /// <summary>
-        /// Decode hexadecimal string into byte array
-        /// </summary>
-        /// <param name="hex">String</param>
-        /// <returns>Byte[]</returns>
+
+        // Декодировать шестнадцатеричную строку в массив байтов
+
         //public static byte[] Unpack(string hex)
         //{
         //    return Enumerable.Range(0, hex.Length)

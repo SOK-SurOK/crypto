@@ -39,6 +39,7 @@
             this.groupBoxVibor = new System.Windows.Forms.GroupBox();
             this.labelKey = new System.Windows.Forms.Label();
             this.textBoxKey = new System.Windows.Forms.TextBox();
+            this.groupBoxHexString = new System.Windows.Forms.GroupBox();
             this.groupBoxVvod.SuspendLayout();
             this.groupBoxVibor.SuspendLayout();
             this.SuspendLayout();
@@ -57,14 +58,14 @@
             // 
             this.textBoxIn.Location = new System.Drawing.Point(144, 39);
             this.textBoxIn.Name = "textBoxIn";
-            this.textBoxIn.Size = new System.Drawing.Size(219, 22);
+            this.textBoxIn.Size = new System.Drawing.Size(587, 22);
             this.textBoxIn.TabIndex = 1;
             // 
             // textBoxOut
             // 
             this.textBoxOut.Location = new System.Drawing.Point(143, 188);
             this.textBoxOut.Name = "textBoxOut";
-            this.textBoxOut.Size = new System.Drawing.Size(220, 22);
+            this.textBoxOut.Size = new System.Drawing.Size(588, 22);
             this.textBoxOut.TabIndex = 2;
             // 
             // buttonDecrypto
@@ -103,9 +104,9 @@
             this.groupBoxVvod.Controls.Add(this.textBoxIn);
             this.groupBoxVvod.Controls.Add(this.labelOUT);
             this.groupBoxVvod.Controls.Add(this.labelIN);
-            this.groupBoxVvod.Location = new System.Drawing.Point(367, 40);
+            this.groupBoxVvod.Location = new System.Drawing.Point(12, 225);
             this.groupBoxVvod.Name = "groupBoxVvod";
-            this.groupBoxVvod.Size = new System.Drawing.Size(369, 216);
+            this.groupBoxVvod.Size = new System.Drawing.Size(737, 216);
             this.groupBoxVvod.TabIndex = 6;
             this.groupBoxVvod.TabStop = false;
             this.groupBoxVvod.Text = "В 16 виде";
@@ -124,9 +125,9 @@
             this.groupBoxVibor.Controls.Add(this.buttonCrypto);
             this.groupBoxVibor.Controls.Add(this.buttonDecrypto);
             this.groupBoxVibor.Controls.Add(this.comboBoxVibor);
-            this.groupBoxVibor.Location = new System.Drawing.Point(12, 40);
+            this.groupBoxVibor.Location = new System.Drawing.Point(12, 12);
             this.groupBoxVibor.Name = "groupBoxVibor";
-            this.groupBoxVibor.Size = new System.Drawing.Size(315, 179);
+            this.groupBoxVibor.Size = new System.Drawing.Size(315, 207);
             this.groupBoxVibor.TabIndex = 7;
             this.groupBoxVibor.TabStop = false;
             this.groupBoxVibor.Text = "Выберете";
@@ -144,14 +145,24 @@
             // 
             this.textBoxKey.Location = new System.Drawing.Point(144, 113);
             this.textBoxKey.Name = "textBoxKey";
-            this.textBoxKey.Size = new System.Drawing.Size(220, 22);
+            this.textBoxKey.Size = new System.Drawing.Size(587, 22);
             this.textBoxKey.TabIndex = 2;
+            // 
+            // groupBoxHexString
+            // 
+            this.groupBoxHexString.Location = new System.Drawing.Point(347, 12);
+            this.groupBoxHexString.Name = "groupBoxHexString";
+            this.groupBoxHexString.Size = new System.Drawing.Size(402, 207);
+            this.groupBoxHexString.TabIndex = 8;
+            this.groupBoxHexString.TabStop = false;
+            this.groupBoxHexString.Text = "Перевести текст 16 - string";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 449);
+            this.Controls.Add(this.groupBoxHexString);
             this.Controls.Add(this.groupBoxVibor);
             this.Controls.Add(this.groupBoxVvod);
             this.Name = "Form1";
@@ -176,6 +187,7 @@
         private System.Windows.Forms.GroupBox groupBoxVibor;
         private System.Windows.Forms.TextBox textBoxKey;
         private System.Windows.Forms.Label labelKey;
+        private System.Windows.Forms.GroupBox groupBoxHexString;
     }
 }
 
