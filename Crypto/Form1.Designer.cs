@@ -32,18 +32,22 @@
             this.textBoxIn = new System.Windows.Forms.TextBox();
             this.textBoxOut = new System.Windows.Forms.TextBox();
             this.buttonDecrypto = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.comboBoxVibor = new System.Windows.Forms.ComboBox();
+            this.labelIN = new System.Windows.Forms.Label();
+            this.groupBoxVvod = new System.Windows.Forms.GroupBox();
+            this.labelOUT = new System.Windows.Forms.Label();
+            this.groupBoxVibor = new System.Windows.Forms.GroupBox();
+            this.labelKey = new System.Windows.Forms.Label();
+            this.textBoxKey = new System.Windows.Forms.TextBox();
+            this.groupBoxVvod.SuspendLayout();
+            this.groupBoxVibor.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonCrypto
             // 
-            this.buttonCrypto.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonCrypto.Location = new System.Drawing.Point(3, 88);
+            this.buttonCrypto.Location = new System.Drawing.Point(33, 73);
             this.buttonCrypto.Name = "buttonCrypto";
-            this.buttonCrypto.Size = new System.Drawing.Size(374, 31);
+            this.buttonCrypto.Size = new System.Drawing.Size(219, 31);
             this.buttonCrypto.TabIndex = 0;
             this.buttonCrypto.Text = "Кодировать";
             this.buttonCrypto.UseVisualStyleBackColor = true;
@@ -51,81 +55,110 @@
             // 
             // textBoxIn
             // 
-            this.textBoxIn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxIn.Location = new System.Drawing.Point(383, 88);
+            this.textBoxIn.Location = new System.Drawing.Point(144, 39);
             this.textBoxIn.Name = "textBoxIn";
-            this.textBoxIn.Size = new System.Drawing.Size(375, 22);
+            this.textBoxIn.Size = new System.Drawing.Size(219, 22);
             this.textBoxIn.TabIndex = 1;
             // 
             // textBoxOut
             // 
-            this.textBoxOut.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxOut.Location = new System.Drawing.Point(383, 274);
+            this.textBoxOut.Location = new System.Drawing.Point(143, 188);
             this.textBoxOut.Name = "textBoxOut";
-            this.textBoxOut.Size = new System.Drawing.Size(375, 22);
+            this.textBoxOut.Size = new System.Drawing.Size(220, 22);
             this.textBoxOut.TabIndex = 2;
             // 
             // buttonDecrypto
             // 
-            this.buttonDecrypto.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonDecrypto.Location = new System.Drawing.Point(3, 274);
+            this.buttonDecrypto.Location = new System.Drawing.Point(33, 123);
             this.buttonDecrypto.Name = "buttonDecrypto";
-            this.buttonDecrypto.Size = new System.Drawing.Size(374, 36);
+            this.buttonDecrypto.Size = new System.Drawing.Size(219, 36);
             this.buttonDecrypto.TabIndex = 3;
             this.buttonDecrypto.Text = "Раскодировать";
             this.buttonDecrypto.UseVisualStyleBackColor = true;
+            this.buttonDecrypto.Click += new System.EventHandler(this.ButtonDecrypto_Click);
             // 
-            // tableLayoutPanel1
+            // comboBoxVibor
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.buttonDecrypto, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxOut, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.buttonCrypto, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxIn, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.98305F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 61.01695F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 53F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 177F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(761, 449);
-            this.tableLayoutPanel1.TabIndex = 4;
+            this.comboBoxVibor.FormattingEnabled = true;
+            this.comboBoxVibor.Location = new System.Drawing.Point(33, 31);
+            this.comboBoxVibor.Name = "comboBoxVibor";
+            this.comboBoxVibor.Size = new System.Drawing.Size(219, 24);
+            this.comboBoxVibor.TabIndex = 4;
+            this.comboBoxVibor.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
-            // comboBox1
+            // labelIN
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(374, 24);
-            this.comboBox1.TabIndex = 4;
+            this.labelIN.AutoSize = true;
+            this.labelIN.Location = new System.Drawing.Point(6, 39);
+            this.labelIN.Name = "labelIN";
+            this.labelIN.Size = new System.Drawing.Size(54, 17);
+            this.labelIN.TabIndex = 5;
+            this.labelIN.Text = "Ввести";
             // 
-            // label1
+            // groupBoxVvod
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label1.Location = new System.Drawing.Point(383, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(375, 17);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Вписывать в 16 виде";
+            this.groupBoxVvod.Controls.Add(this.textBoxKey);
+            this.groupBoxVvod.Controls.Add(this.textBoxOut);
+            this.groupBoxVvod.Controls.Add(this.labelKey);
+            this.groupBoxVvod.Controls.Add(this.textBoxIn);
+            this.groupBoxVvod.Controls.Add(this.labelOUT);
+            this.groupBoxVvod.Controls.Add(this.labelIN);
+            this.groupBoxVvod.Location = new System.Drawing.Point(367, 40);
+            this.groupBoxVvod.Name = "groupBoxVvod";
+            this.groupBoxVvod.Size = new System.Drawing.Size(369, 216);
+            this.groupBoxVvod.TabIndex = 6;
+            this.groupBoxVvod.TabStop = false;
+            this.groupBoxVvod.Text = "В 16 виде";
+            // 
+            // labelOUT
+            // 
+            this.labelOUT.AutoSize = true;
+            this.labelOUT.Location = new System.Drawing.Point(6, 188);
+            this.labelOUT.Name = "labelOUT";
+            this.labelOUT.Size = new System.Drawing.Size(49, 17);
+            this.labelOUT.TabIndex = 5;
+            this.labelOUT.Text = "Выход";
+            // 
+            // groupBoxVibor
+            // 
+            this.groupBoxVibor.Controls.Add(this.buttonCrypto);
+            this.groupBoxVibor.Controls.Add(this.buttonDecrypto);
+            this.groupBoxVibor.Controls.Add(this.comboBoxVibor);
+            this.groupBoxVibor.Location = new System.Drawing.Point(12, 40);
+            this.groupBoxVibor.Name = "groupBoxVibor";
+            this.groupBoxVibor.Size = new System.Drawing.Size(315, 179);
+            this.groupBoxVibor.TabIndex = 7;
+            this.groupBoxVibor.TabStop = false;
+            this.groupBoxVibor.Text = "Выберете";
+            // 
+            // labelKey
+            // 
+            this.labelKey.AutoSize = true;
+            this.labelKey.Location = new System.Drawing.Point(7, 113);
+            this.labelKey.Name = "labelKey";
+            this.labelKey.Size = new System.Drawing.Size(91, 17);
+            this.labelKey.TabIndex = 5;
+            this.labelKey.Text = "Ввести ключ";
+            // 
+            // textBoxKey
+            // 
+            this.textBoxKey.Location = new System.Drawing.Point(144, 113);
+            this.textBoxKey.Name = "textBoxKey";
+            this.textBoxKey.Size = new System.Drawing.Size(220, 22);
+            this.textBoxKey.TabIndex = 2;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 449);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.groupBoxVibor);
+            this.Controls.Add(this.groupBoxVvod);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.groupBoxVvod.ResumeLayout(false);
+            this.groupBoxVvod.PerformLayout();
+            this.groupBoxVibor.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -136,9 +169,13 @@
         private System.Windows.Forms.TextBox textBoxIn;
         private System.Windows.Forms.TextBox textBoxOut;
         private System.Windows.Forms.Button buttonDecrypto;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBoxVibor;
+        private System.Windows.Forms.Label labelIN;
+        private System.Windows.Forms.GroupBox groupBoxVvod;
+        private System.Windows.Forms.Label labelOUT;
+        private System.Windows.Forms.GroupBox groupBoxVibor;
+        private System.Windows.Forms.TextBox textBoxKey;
+        private System.Windows.Forms.Label labelKey;
     }
 }
 

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Crypto
 {
@@ -17,13 +17,13 @@ namespace Crypto
         {
             InitializeComponent();
             
-            comboBox1.Items.AddRange(new string[] { "Магма" });  // добавляем набор элементов
-            comboBox1.SelectedIndex = 0;
+            comboBoxVibor.Items.AddRange(new string[] { "Магма" });  // добавляем набор элементов
+            comboBoxVibor.SelectedIndex = 0;
         }
 
         private void ButtonCrypto_Click(object sender, EventArgs e)
         {
-            switch (comboBox1.SelectedIndex)
+            switch (comboBoxVibor.SelectedIndex)
             {
                 case 0:
                     magmaTest();
@@ -37,16 +37,51 @@ namespace Crypto
         public void magmaTest()
         {
             //byte[] _ref_key = Utils.Unpack("FFEEDDCCBBAA99887766554433221100F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF");
-            byte[] _ref_key = Utils.StringToByteArray("FFEEDDCCBBAA99887766554433221100F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF");
-            byte[] _ref_plain = Utils.Unpack("FEDCBA9876543210");
-            byte[] _ref_cipher = Utils.Unpack("4EE901E5C2D8CA3D");
-            
-            Magma cipher = new Magma();
-            cipher.SetKey(_ref_key);
-            byte[] result = cipher.Encrypt(_ref_plain);
-            //CollectionAssert.AreEqual(_ref_cipher, result);//сравнение 2 массивов
+            //byte[] _ref_key = Utils.StringToByteArray("FFEEDDCCBBAA99887766554433221100F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF");
+            //byte[] _ref_plain = Utils.Unpack("FEDCBA9876543210");
+            //byte[] _ref_cipher = Utils.Unpack("4EE901E5C2D8CA3D");
 
-            textBoxOut.Text = Utils.ByteArrayToString(result);
+            string ref_plain = textBoxIn.Text;
+            string ref_key = textBoxKey.Text;
+
+            if (ref_key.Length == 64)
+            {
+                if (ref_plain.Length >= 16)
+                {
+                    if (ref_plain.Length % 2 == 0)
+                    {
+                        Magma cipher = new Magma();
+                        cipher.SetKey(Utils.StringToByteArray(ref_key));
+                        byte[] result = cipher.Encrypt(Utils.StringToByteArray(ref_plain));
+
+                        //CollectionAssert.AreEqual(_ref_cipher, result);//сравнение 2 массивов
+
+                        textBoxOut.Text = Utils.ByteArrayToString(result);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неправильный 16 ввод !");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Нельзя пустую строку!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Неверный размер ключа!");
+            }
+        }
+
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonDecrypto_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
@@ -57,13 +92,13 @@ namespace Crypto
         /// </summary>
         /// <param name="hex">String</param>
         /// <returns>Byte[]</returns>
-        public static byte[] Unpack(string hex)
-        {
-            return Enumerable.Range(0, hex.Length)
-                             .Where(x => x % 2 == 0)
-                             .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
-                             .ToArray();
-        }
+        //public static byte[] Unpack(string hex)
+        //{
+        //    return Enumerable.Range(0, hex.Length)
+        //                     .Where(x => x % 2 == 0)
+        //                     .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+        //                     .ToArray();
+        //}
         public static string ByteArrayToString(byte[] ba)
         {
             StringBuilder hex = new StringBuilder(ba.Length * 2);

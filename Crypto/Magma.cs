@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Crypto
 {
-    public class Magma : ICipherAlgorithm
+    public class Magma //: ICipherAlgorithm
     {
         private const int BLOCK_SIZE = 8;
         private const int KEY_LENGTH = 32;
@@ -110,7 +110,7 @@ namespace Crypto
         private uint funcT(uint a)
         {
             uint res = 0;
-
+            //^ логическое ИЛИ
             res ^= _sBox[0][a & 0x0000000f];
             res ^= (uint)(_sBox[1][((a & 0x000000f0) >> 4)] << 4);
             res ^= (uint)(_sBox[2][((a & 0x00000f00) >> 8)] << 8);
