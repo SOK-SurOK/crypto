@@ -35,13 +35,17 @@
             this.comboBoxVibor = new System.Windows.Forms.ComboBox();
             this.labelIN = new System.Windows.Forms.Label();
             this.groupBoxVvod = new System.Windows.Forms.GroupBox();
+            this.textBoxKey = new System.Windows.Forms.TextBox();
+            this.labelKey = new System.Windows.Forms.Label();
             this.labelOUT = new System.Windows.Forms.Label();
             this.groupBoxVibor = new System.Windows.Forms.GroupBox();
-            this.labelKey = new System.Windows.Forms.Label();
-            this.textBoxKey = new System.Windows.Forms.TextBox();
             this.groupBoxHexString = new System.Windows.Forms.GroupBox();
+            this.textBoxText = new System.Windows.Forms.TextBox();
+            this.buttonText = new System.Windows.Forms.Button();
+            this.buttonTextS = new System.Windows.Forms.Button();
             this.groupBoxVvod.SuspendLayout();
             this.groupBoxVibor.SuspendLayout();
+            this.groupBoxHexString.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonCrypto
@@ -111,6 +115,22 @@
             this.groupBoxVvod.TabStop = false;
             this.groupBoxVvod.Text = "В 16 виде";
             // 
+            // textBoxKey
+            // 
+            this.textBoxKey.Location = new System.Drawing.Point(144, 113);
+            this.textBoxKey.Name = "textBoxKey";
+            this.textBoxKey.Size = new System.Drawing.Size(587, 22);
+            this.textBoxKey.TabIndex = 2;
+            // 
+            // labelKey
+            // 
+            this.labelKey.AutoSize = true;
+            this.labelKey.Location = new System.Drawing.Point(7, 113);
+            this.labelKey.Name = "labelKey";
+            this.labelKey.Size = new System.Drawing.Size(91, 17);
+            this.labelKey.TabIndex = 5;
+            this.labelKey.Text = "Ввести ключ";
+            // 
             // labelOUT
             // 
             this.labelOUT.AutoSize = true;
@@ -132,30 +152,44 @@
             this.groupBoxVibor.TabStop = false;
             this.groupBoxVibor.Text = "Выберете";
             // 
-            // labelKey
-            // 
-            this.labelKey.AutoSize = true;
-            this.labelKey.Location = new System.Drawing.Point(7, 113);
-            this.labelKey.Name = "labelKey";
-            this.labelKey.Size = new System.Drawing.Size(91, 17);
-            this.labelKey.TabIndex = 5;
-            this.labelKey.Text = "Ввести ключ";
-            // 
-            // textBoxKey
-            // 
-            this.textBoxKey.Location = new System.Drawing.Point(144, 113);
-            this.textBoxKey.Name = "textBoxKey";
-            this.textBoxKey.Size = new System.Drawing.Size(587, 22);
-            this.textBoxKey.TabIndex = 2;
-            // 
             // groupBoxHexString
             // 
+            this.groupBoxHexString.Controls.Add(this.buttonTextS);
+            this.groupBoxHexString.Controls.Add(this.buttonText);
+            this.groupBoxHexString.Controls.Add(this.textBoxText);
             this.groupBoxHexString.Location = new System.Drawing.Point(347, 12);
             this.groupBoxHexString.Name = "groupBoxHexString";
             this.groupBoxHexString.Size = new System.Drawing.Size(402, 207);
             this.groupBoxHexString.TabIndex = 8;
             this.groupBoxHexString.TabStop = false;
             this.groupBoxHexString.Text = "Перевести текст 16 - string";
+            // 
+            // textBoxText
+            // 
+            this.textBoxText.Location = new System.Drawing.Point(6, 148);
+            this.textBoxText.Name = "textBoxText";
+            this.textBoxText.Size = new System.Drawing.Size(390, 22);
+            this.textBoxText.TabIndex = 0;
+            // 
+            // buttonText
+            // 
+            this.buttonText.Location = new System.Drawing.Point(107, 73);
+            this.buttonText.Name = "buttonText";
+            this.buttonText.Size = new System.Drawing.Size(75, 31);
+            this.buttonText.TabIndex = 1;
+            this.buttonText.Text = "В 16";
+            this.buttonText.UseVisualStyleBackColor = true;
+            this.buttonText.Click += new System.EventHandler(this.ButtonText_Click);
+            // 
+            // buttonTextS
+            // 
+            this.buttonTextS.Location = new System.Drawing.Point(232, 73);
+            this.buttonTextS.Name = "buttonTextS";
+            this.buttonTextS.Size = new System.Drawing.Size(75, 31);
+            this.buttonTextS.TabIndex = 1;
+            this.buttonTextS.Text = "В String";
+            this.buttonTextS.UseVisualStyleBackColor = true;
+            this.buttonTextS.Click += new System.EventHandler(this.ButtonTextS_Click);
             // 
             // Form1
             // 
@@ -170,6 +204,8 @@
             this.groupBoxVvod.ResumeLayout(false);
             this.groupBoxVvod.PerformLayout();
             this.groupBoxVibor.ResumeLayout(false);
+            this.groupBoxHexString.ResumeLayout(false);
+            this.groupBoxHexString.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -188,6 +224,9 @@
         private System.Windows.Forms.TextBox textBoxKey;
         private System.Windows.Forms.Label labelKey;
         private System.Windows.Forms.GroupBox groupBoxHexString;
+        private System.Windows.Forms.Button buttonText;
+        private System.Windows.Forms.TextBox textBoxText;
+        private System.Windows.Forms.Button buttonTextS;
     }
 }
 

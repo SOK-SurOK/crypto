@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Crypto
 {
-    public class Magma 
+    class Magma2
     {
         private const int BLOCK_SIZE = 8;
         private const int KEY_LENGTH = 32;
@@ -72,7 +72,7 @@ namespace Crypto
         {
             byte[] dataR = new byte[data.Length];
             Array.Copy(data, dataR, data.Length);
-            Array.Reverse(dataR);
+            //Array.Reverse(dataR);
 
             uint a0 = BitConverter.ToUInt32(dataR, 0);
             uint a1 = BitConverter.ToUInt32(dataR, 4);
@@ -82,22 +82,22 @@ namespace Crypto
             for (int i = 0; i < 31; i++)
             {
                 int keyIndex = (i < 24) ? i % 8 : 7 - (i % 8);
-                uint round = a1 ^ funcG(a0, _subKeys[keyIndex]); //сложение по модулю 2
+                uint round = a0 ^ funcG(a1, _subKeys[keyIndex]); //сложение по модулю 2
 
-                a1 = a0;
-                a0 = round;
+                a0 = a1;
+                a1 = round;
             }
 
-            a1 = a1 ^ funcG(a0, _subKeys[0]); //последняя итерация не инвертируется
+            a1 = a0 ^ funcG(a1, _subKeys[0]); //последняя итерация не инвертируется
 
             Array.Copy(BitConverter.GetBytes(a0), 0, result, 0, 4);
             Array.Copy(BitConverter.GetBytes(a1), 0, result, 4, 4);
 
-            Array.Reverse(result);
+            //Array.Reverse(result);
             return result;
         }
 
-       
+
         private uint funcG(uint a, uint k)
         {
             uint c = a + k; //сложение по модулю 32
@@ -146,7 +146,7 @@ namespace Crypto
         {
             byte[] dataR = new byte[data.Length];
             Array.Copy(data, dataR, data.Length);
-            Array.Reverse(dataR);
+            //Array.Reverse(dataR);
 
             uint a0 = BitConverter.ToUInt32(dataR, 0);
             uint a1 = BitConverter.ToUInt32(dataR, 4);
@@ -155,19 +155,19 @@ namespace Crypto
 
             for (int i = 31; i > 0; i--)
             {
-                int keyIndex = (i < 24) ? (i % 8) : 7-(i % 8);
-                uint round = a1 ^ funcG(a0, _subKeys[keyIndex]);
+                int keyIndex = (i < 24) ? (i % 8) : 7 - (i % 8);
+                uint round = a0 ^ funcG(a1, _subKeys[keyIndex]);
 
-                a1 = a0;
-                a0 = round;
+                a0 = a1;
+                a1 = round;
             }
 
-            a1 = a1 ^ funcG(a0, _subKeys[0]);
+            a1 = a0 ^ funcG(a1, _subKeys[0]);
 
             Array.Copy(BitConverter.GetBytes(a0), 0, result, 0, 4);
             Array.Copy(BitConverter.GetBytes(a1), 0, result, 4, 4);
 
-            Array.Reverse(result);
+            //Array.Reverse(result);
             return result;
         }
     }
