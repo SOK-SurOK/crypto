@@ -35,13 +35,13 @@ namespace Crypto
 
         private void ButtonEn_Click(object sender, EventArgs e)
         {
-            long s = rsa.Encrypt(Convert.ToInt64(textBox.Text));
+            long s = rsa.Encrypt(Convert.ToInt64(textBox.Text), Convert.ToInt64(textBoxE.Text), Convert.ToInt64(textBoxN.Text));
             textBox.Text = s.ToString();
         }
 
         private void ButtonDe_Click(object sender, EventArgs e)
         {
-            long s = rsa.Decrypt(Convert.ToInt64(textBox.Text));
+            long s = rsa.Decrypt(Convert.ToInt64(textBox.Text), Convert.ToInt64(textBoxD.Text), Convert.ToInt64(textBoxN.Text));
             textBox.Text = s.ToString();
         }
     }

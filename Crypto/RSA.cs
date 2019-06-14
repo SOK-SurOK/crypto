@@ -7,8 +7,6 @@ using System.Numerics;
 /*
 числа e и n – это открытый ключ, а числа d и n – это закрытый ключ;
 открытым ключом зашифровывают сообщение, а закрытым – расшифровывают;
-разбить шифруемый текст на блоки,
-каждый из которых может быть представлен в виде числа M(i);
 */
 namespace Crypto
 {
@@ -52,14 +50,24 @@ namespace Crypto
             }
         }
 
-        public long Encrypt(long m)
+        public long Encrypt(long m, long e, long n)
         {
-            return ((long)Math.Pow(m, E) % N);
+            return (Pow(m, e) % n);
         }
 
-        public long Decrypt(long c)
+        public long Decrypt(long c, long d, long n)
         {
-            return ((long)Math.Pow(c, D) % N);
+            return (Pow(c, d) % n);
+        }
+
+        long Pow(long x, long step)
+        {
+            long xx = x;
+            for (int i = 1; i < step; i++)
+            {
+                x *= xx;
+            }
+            return x;
         }
         long Calculate_e(long fn)
         {
