@@ -27,9 +27,9 @@ namespace Crypto
                 textBoxN.Text = rsa.getN.ToString();
                 textBoxD.Text = rsa.getD.ToString();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Похоже числа не простые");
+                MessageBox.Show($"Исключение: {ex.Message}");
             }
         }
 
