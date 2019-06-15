@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Crypto
 {
-    public partial class XehMagmaForm : Form
+    public partial class FormXehMagma : Form
     {
-        public XehMagmaForm()
+        public FormXehMagma()
         {
             InitializeComponent();
         }
@@ -20,16 +20,17 @@ namespace Crypto
         private void ButtonEn_Click(object sender, EventArgs e)
         {
             XehMagma xm = new XehMagma();
-            //try
-            //{
+            try
+            {
                 string s;
                 s = xm.Encrypt(textBoxKey.Text, textBox.Text);
                 textBox.Text = s;
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Исключение: {ex.Message}");
-            //}
+                textBoxKey.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Исключение: {ex.Message}");
+            }
         }
 
         private void ButtonR_Click(object sender, EventArgs e)

@@ -37,12 +37,15 @@ namespace Crypto
         }
         public void SetKeys(long p, long q)
         {
-            if (IsTheNumberSimple(Math.Abs(p)) && IsTheNumberSimple(Math.Abs(q)))
+            if (IsTheNumberSimple(p) && IsTheNumberSimple(q))
             {
                 N = p * q;
                 long fn = (p - 1) * (q - 1);
                 E = Calculate_e(fn);
-                D = Calculate_d(fn, E);   
+                D = Mod(Calculate_d(fn, E), fn);
+                //long kk = Mod(-3, 20);
+                //kk = Mod(3, -20);
+                //kk = kk;
             }
             else
             {
@@ -60,7 +63,15 @@ namespace Crypto
             return (Pow(c, d) % n);
         }
 
-        long Pow(long x, long step)
+        static long Mod(long n, long d)
+        {
+            long result = n % d;
+            if (Math.Sign(result) * Math.Sign(d) < 0)
+                result += d;
+            return result;
+            
+        }
+        static long Pow(long x, long step)
         {
             long xx = x;
             for (int i = 1; i < step; i++)
@@ -90,7 +101,7 @@ namespace Crypto
         long Calculate_d(long fn, long e)
         {
             long x = 0, y = 0;
-            long nod = Gcd(e, fn, out x, out y);
+            long nod = Gcd(fn, e, out x, out y);
             return x;
         }
         bool IsTheNumberSimple(long n)
@@ -151,7 +162,7 @@ namespace Crypto
                 return b;
             }
 
-            long gcd = Gcd(b % a, a, out x, out y);
+            long gcd = Gcd(Mod(b, a), a, out x, out y);
 
             long newY = x;
             long newX = y - (b / a) * x;
@@ -161,15 +172,15 @@ namespace Crypto
             return gcd;
         }
 
-        int gcd(int a, int b, out int x, out int y)
+        long gcd(long a, long b, out long x, out long y)
         {
             if (a == 0)
             {
                 x = 0; y = 1;
                 return b;
             }
-            int x1, y1;
-            int d = gcd(b % a, a, out x1, out y1);
+            long x1, y1;
+            long d = gcd(Mod(b, a), a, out x1, out y1);
             x = y1 - (b / a) * x1;
             y = x1;
             return d;
