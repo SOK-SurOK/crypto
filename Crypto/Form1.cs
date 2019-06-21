@@ -27,7 +27,7 @@ namespace Crypto
             switch (comboBoxVibor.SelectedIndex)
             {
                 case 0:
-                    String16 f0 = new String16();
+                    FormString16 f0 = new FormString16();
                     f0.Show();
                     break;
                 case 1:

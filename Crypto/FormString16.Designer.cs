@@ -1,6 +1,6 @@
 ﻿namespace Crypto
 {
-    partial class String16
+    partial class FormString16
     {
         /// <summary>
         /// Required designer variable.

@@ -23,9 +23,18 @@ namespace Crypto
             try
             {
                 string s;
-                s = xm.Encrypt(textBoxKey.Text, textBox.Text);
-                textBox.Text = s;
-                textBoxKey.Text = "";
+
+                string k="";
+                //Random rnd = new Random();
+                //while (k.Length != 64)
+                //{
+                //    k += rnd.Next(0, 10);
+                //}
+                k = textBox.Text.Substring(0, 16);
+                k = k + k + k + k;
+                s = xm.Encrypt(k, textBox.Text);
+                //textBox.Text = s;
+                textBoxKey.Text = s;
             }
             catch (Exception ex)
             {
@@ -35,19 +44,19 @@ namespace Crypto
 
         private void ButtonR_Click(object sender, EventArgs e)
         {
-            string t="", k="";
+            string t = "";//, k="";
             Random rnd = new Random();
-            while(k.Length != 64)
-            {
-                k += rnd.Next(0, 10);
-            }
+            //while(k.Length != 64)
+            //{
+            //    k += rnd.Next(0, 10);
+            //}
             var l = rnd.Next(64);
             while(t.Length != l)
             {
                 t += rnd.Next(0, 10);
             }
             textBox.Text = t;
-            textBoxKey.Text = k;
+            //textBoxKey.Text = k;
         }
     }
 }

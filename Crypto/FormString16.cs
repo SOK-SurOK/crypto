@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Crypto
 {
-    public partial class String16 : Form
+    public partial class FormString16 : Form
     {
-        public String16()
+        public FormString16()
         {
             InitializeComponent();
         }

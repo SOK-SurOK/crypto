@@ -70,7 +70,7 @@ namespace Crypto
             while (bad)
             {
                 r = rnd.Next(1, (int)fn);
-                if(r>1 && r<fn && Gcd(r, fn, out x, out y)==1)
+                if(r>1 && r<fn && Utils.gcd(r, fn, out x, out y)==1)
                 {
                     bad = false;
                 }
