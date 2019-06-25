@@ -21,7 +21,7 @@ namespace Crypto
             long xx = x;
             for (int i = 1; i < step; i++)
             {
-                x *= xx;
+                x = checked(x*xx);
             }
             return x;
         }

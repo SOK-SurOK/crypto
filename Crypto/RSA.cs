@@ -14,21 +14,21 @@ namespace Crypto
     {
         long E, N, D;
 
-        public long getE
+        public long myE
         {
             get
             {
                 return E;
             }
         }
-        public long getN
+        public long myN
         {
             get
             {
                 return N;
             }
         }
-        public long getD
+        public long myD
         {
             get
             {
@@ -52,12 +52,12 @@ namespace Crypto
 
         public long Encrypt(long m, long e, long n)
         {
-            return (Utils.Pow(m, e) % n);
+            return Utils.Mod(Utils.Pow(m, e), n);
         }
 
         public long Decrypt(long c, long d, long n)
         {
-            return (Utils.Pow(c, d) % n);
+            return Utils.Mod(Utils.Pow(c, d), n);
         }
 
        

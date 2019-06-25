@@ -8,137 +8,73 @@ namespace Crypto
 {
     class SlepHaum
     {
-        long P, Q, N, K, E, D;
+        //long P, Q, N, K, E, D;
+        long K;
+        RSA rsa;
+
+        public long myK
+        {
+            get
+            {
+                return K;
+            }
+        }
+        public long myE
+        {
+            get
+            {
+                return rsa.myE;
+            }
+        }
+        public long myD
+        {
+            get
+            {
+                return rsa.myD;
+            }
+        }
+        public long myN
+        {
+            get
+            {
+                return rsa.myN;
+            }
+        }
         public void SetKeys(long p, long q, int max)
         {
-            if (IsTheNumberSimple(Math.Abs(p)) && IsTheNumberSimple(Math.Abs(q)))
-            {
-                N = p * q;
-                P = p;
-                Q = q;
-                long fn = (p - 1) * (q - 1);
-                E = Calculate_e(fn);
-                D = Calculate_d(fn, E);
+            rsa = new RSA();
+            rsa.SetKeys(p, q);
 
-                Random rnd = new Random();
-                long k = rnd.Next(max);
-                while( NOD(k, N) != 1)
-                {
-                    k = rnd.Next(max);
-                }
-                K = k;
-                throw new Exception("Закончил!");
-            }
-            else
+            Random rnd = new Random();
+            long x = 0, y = 0;
+            long k = rnd.Next(2, max);
+            while( Utils.gcd(k, rsa.myN, out x, out y) != 1)
             {
-                throw new Exception("Числа не простые!");
+                k = rnd.Next(2, max);
             }
+            K = k;
+            //throw new Exception("Закончил!");
         }
 
         public long GetY(long x)
         {
-            return ((x*Pow(K, E)) % N);
+            return Utils.Mod(x*Utils.Pow(K, rsa.myE), rsa.myN); //((x*Pow(K, E)) % N);
         }
 
         public long GetZ(long y)
         {
-            return (Pow(y, D) % N);
-        }
-
-        public long GetS(long x)
-        {
-            return ((Pow(x, D)) % N);
+            return Utils.Mod(Utils.Pow(y, rsa.myD), rsa.myN); //(Pow(y, D) % N);
         }
 
         public long Encrypt(long z)
         {
-            return ((z/K) % N);
-        }
-        long Pow(long x, long step)
-        {
-            long xx = x;
-            for (int i = 1; i < step; i++)
-            {
-                x *= xx;
-            }
-            return x;
-        }
-        long NOD(long v1, long v2)
-        {
-            if (v2 == 0)
-            {
-                return v1;
-            }
-            else
-            {
-                return NOD(v2, v1 % v2);
-            }
+            return Utils.Mod(z/K, rsa.myN); //((z/K) % N);
         }
 
-        bool IsTheNumberSimple(long n)
+
+        public long GetS(long x)//проверка(то что должны получить)
         {
-            if (n < 2)
-                return false;
-
-            if (n == 2)
-                return true;
-
-            for (long i = 2; i < n; i++)
-                if (n % i == 0)
-                    return false;
-
-            return true;
-        }
-
-        long Calculate_e(long fn)
-        {
-            long x = 0, y = 0;
-            Random rnd = new Random();
-            long r = rnd.Next(1, (int)fn);
-            bool bad = true;
-            while (bad)
-            {
-                r = rnd.Next(1, (int)fn);
-                if (r > 1 && r < fn && Gcd(r, fn, out x, out y) == 1)
-                {
-                    bad = false;
-                }
-            }
-
-            return r;
-        }
-
-        long Calculate_d(long fn, long e)
-        {
-            long x = 0, y = 0;
-            long nod = Gcd(e, fn, out x, out y);
-            return x;
-        }
-
-        long Gcd(long a, long b, out long x, out long y)
-        {
-            if (b < a)
-            {
-                var t = a;
-                a = b;
-                b = t;
-            }
-
-            if (a == 0)
-            {
-                x = 0;
-                y = 1;
-                return b;
-            }
-
-            long gcd = Gcd(b % a, a, out x, out y);
-
-            long newY = x;
-            long newX = y - (b / a) * x;
-
-            x = newX;
-            y = newY;
-            return gcd;
+            return Utils.Mod(Utils.Pow(x, rsa.myD), rsa.myN); //((Pow(x, D)) % N);
         }
     }
 }

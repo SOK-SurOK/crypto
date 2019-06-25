@@ -23,9 +23,9 @@ namespace Crypto
             try
             {
                 rsa.SetKeys(Convert.ToInt64(textBoxP.Text), Convert.ToInt64(textBoxQ.Text));
-                textBoxE.Text = rsa.getE.ToString();
-                textBoxN.Text = rsa.getN.ToString();
-                textBoxD.Text = rsa.getD.ToString();
+                textBoxE.Text = rsa.myE.ToString();
+                textBoxN.Text = rsa.myN.ToString();
+                textBoxD.Text = rsa.myD.ToString();
             }
             catch (Exception ex)
             {
@@ -35,14 +35,28 @@ namespace Crypto
 
         private void ButtonEn_Click(object sender, EventArgs e)
         {
-            long s = rsa.Encrypt(Convert.ToInt64(textBox.Text), Convert.ToInt64(textBoxE.Text), Convert.ToInt64(textBoxN.Text));
-            textBox.Text = s.ToString();
+            try
+            {
+                long s = rsa.Encrypt(Convert.ToInt64(textBox.Text), Convert.ToInt64(textBoxE.Text), Convert.ToInt64(textBoxN.Text));
+                textBox.Text = s.ToString();
+            }
+            catch (System.OverflowException ex)
+            {
+                MessageBox.Show($"Исключение переполнения: {ex.Message}");
+            }
         }
 
         private void ButtonDe_Click(object sender, EventArgs e)
         {
-            long s = rsa.Decrypt(Convert.ToInt64(textBox.Text), Convert.ToInt64(textBoxD.Text), Convert.ToInt64(textBoxN.Text));
-            textBox.Text = s.ToString();
+            try
+            {
+                long s = rsa.Decrypt(Convert.ToInt64(textBox.Text), Convert.ToInt64(textBoxD.Text), Convert.ToInt64(textBoxN.Text));
+                textBox.Text = s.ToString();
+            }
+            catch (System.OverflowException ex)
+            {
+                MessageBox.Show($"Исключение переполнения: {ex.Message}");
+            }
         }
     }
 }

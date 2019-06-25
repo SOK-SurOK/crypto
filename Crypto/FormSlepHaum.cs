@@ -23,6 +23,10 @@ namespace Crypto
             try
             {
                 sh.SetKeys(Convert.ToInt64(textBoxP.Text), Convert.ToInt64(textBoxQ.Text), Convert.ToInt32(textBoxMax.Text));
+                labelK.Text = sh.myK.ToString();
+                labelN.Text = sh.myN.ToString();
+                labelD.Text = sh.myD.ToString();
+                labelE.Text = sh.myE.ToString();
             }
             catch (Exception ex)
             {
@@ -37,9 +41,16 @@ namespace Crypto
 
         private void ButtonEn_Click(object sender, EventArgs e)
         {
-            long z = sh.GetZ(Convert.ToInt64(textBox2.Text));
-            textBox2.Text = sh.Encrypt(z).ToString();
-            labelS.Text = sh.GetS(Convert.ToInt64(textBox1.Text)).ToString();
+            try
+            {
+                long z = sh.GetZ(Convert.ToInt64(textBox2.Text));
+                textBox2.Text = sh.Encrypt(z).ToString();
+                labelS.Text = sh.GetS(Convert.ToInt64(textBox1.Text)).ToString();
+            }
+            catch (System.OverflowException ex)
+            {
+                MessageBox.Show($"Исключение переполнения: {ex.Message}");
+            }
         }
     }
 }

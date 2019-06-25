@@ -26,12 +26,12 @@ namespace Crypto
         public bool doo(int s)
         {
             A1 a = new A1(s);
-            a.do1(N);
-            long x = a.do2(N);
+            a.set_S_V(N);
+            long x = a.getX(N);
             B1 b = new B1(s, x);
-            bool[] bb = b.do1(N);
-            long y = a.do3(N, bb);
-            bool flag = b.do2(N, y, a.getV());
+            bool[] bb = b.getB(N);
+            long y = a.getY(N, bb);
+            bool flag = b.getProverka(N, y, a.getV());
             return flag;
         }
 
@@ -85,33 +85,45 @@ namespace Crypto
         {
             return V;
         }
-        public void do1(long n)
+        public void set_S_V(long n)
         {
             for (int i = 0; i < size; i++)
             {
                 S[i] = rnd.Next();
-                V[i] = (1 / (S[i] * S[i])) % n;
+                bool bad = true;
+                long x=0, y=0;
+                while (bad)
+                {
+                    S[i] = rnd.Next(1, (int)n);
+                    if ( Utils.gcd(S[i], n, out x, out y) == 1)
+                    {
+                        bad = false;
+                    }
+                }
+
+                
+                V[i] = Utils.Mod( (S[i] * S[i]) , n);
             }
 
         }
 
-        public long do2(long n)//передать x
+        public long getX(long n)//передать x
         {
             R = rnd.Next(1, (int)n);
-            return (R * R) % n;//x
+            return Utils.Mod((R * R), n);//x
         }
 
-        public long do3(long n, bool[] b)//передать y
+        public long getY(long n, bool[] b)//передать y
         {
             long ss = 1;
             for (int i = 0; i < size; i++)
             {
-               if(b[i])
+                if(b[i])
                 {
                     ss *= S[i];
                 }
             }
-            return (R * ss) % n;//y
+            return Utils.Mod((R * ss), n);//y
         }
 
 
@@ -133,7 +145,7 @@ namespace Crypto
             X = x;
         }
 
-        public bool[] do1(long n)//передать b
+        public bool[] getB(long n)//передать b
         {
             for (int i = 0; i < size; i++)
             {
@@ -142,7 +154,7 @@ namespace Crypto
             return B;
         }
 
-        public bool do2(long n, long y, long[] v)
+        public bool getProverka(long n, long y, long[] v)
         {
             long vv = 1;
             for (int i = 0; i < size; i++)
@@ -152,7 +164,7 @@ namespace Crypto
                     vv *= v[i];
                 }
             }
-            long x = (y * y * vv) % n;
+            long x = Utils.Mod((y * y * vv), n);
             return x == X;
         }
     }

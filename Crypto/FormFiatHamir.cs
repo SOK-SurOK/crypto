@@ -20,12 +20,21 @@ namespace Crypto
         private void Button1_Click(object sender, EventArgs e)
         {
             Fiat_Hamir fh = new Fiat_Hamir();
-            fh.setKey(3, 5);
-            bool f = fh.doo(10);
-            if (f)
-                label1.Text = "true";
-            else
-                label1.Text = "false";
+            try
+            {
+                fh.setKey(Convert.ToInt64(textBoxP.Text), Convert.ToInt64(textBoxQ.Text));
+
+                bool f = fh.doo(Convert.ToInt32(textBoxSize.Text));
+                if (f)
+                    label1.Text = "true";
+                else
+                    label1.Text = "false";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Исключение: {ex.Message}");
+            }
+          
         }
     }
 }
