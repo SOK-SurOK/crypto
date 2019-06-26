@@ -61,11 +61,23 @@
     <Compile Include="FormFiatHamir.Designer.cs">
       <DependentUpon>FormFiatHamir.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormHamir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHamir.Designer.cs">
+      <DependentUpon>FormHamir.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMagma.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMagma.Designer.cs">
       <DependentUpon>FormMagma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOngoHnorHamir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOngoHnorHamir.Designer.cs">
+      <DependentUpon>FormOngoHnorHamir.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRSA.cs">
       <SubType>Form</SubType>
@@ -79,7 +91,9 @@
     <Compile Include="FormSlepHaum.Designer.cs">
       <DependentUpon>FormSlepHaum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hamir.cs" />
     <Compile Include="Magma.cs" />
+    <Compile Include="OngoHnorHamir.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RSA.cs" />

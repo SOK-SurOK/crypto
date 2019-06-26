@@ -18,7 +18,7 @@ namespace Crypto
         {
             InitializeComponent();
             
-            comboBoxVibor.Items.AddRange(new string[] {"Перевод", "Магма", "RSA", "Хэш-Магма", "Фиат-Шамир", "Слепой Чаум"});
+            comboBoxVibor.Items.AddRange(new string[] {"Перевод", "Магма", "RSA", "Хэш-Магма", "Фиат-Шамир", "Слепой Чаум", "Онго-Шнора-Шамира"});
             comboBoxVibor.SelectedIndex = 0;
         }
   
@@ -49,6 +49,10 @@ namespace Crypto
                 case 5:
                     FormSlepHaum f5 = new FormSlepHaum();
                     f5.Show();
+                    break;
+                case 6:
+                    FormOngoHnorHamir f6 = new FormOngoHnorHamir();
+                    f6.Show();
                     break;
                 default:
                     break;
