@@ -41,7 +41,8 @@ namespace Crypto
 
             for (int i = 0; i < N; i++)
             {
-                R[i] = i + 1;
+                //R[i] = i + 1;
+                R[i] = rnd.Next(1, maxi);
             }
 
             for (int i = 0; i < N; i++)

@@ -18,7 +18,7 @@ namespace Crypto
         {
             InitializeComponent();
             
-            comboBoxVibor.Items.AddRange(new string[] {"Перевод", "Магма", "RSA", "Хэш-Магма", "Фиат-Шамир", "Слепой Чаум", "Онго-Шнора-Шамира"});
+            comboBoxVibor.Items.AddRange(new string[] {"Перевод", "Магма", "RSA", "Хэш-Магма", "Фиат-Шамир", "Слепой Чаум", "Онго-Шнора-Шамира", "Шамир"});
             comboBoxVibor.SelectedIndex = 0;
         }
   
@@ -53,6 +53,10 @@ namespace Crypto
                 case 6:
                     FormOngoHnorHamir f6 = new FormOngoHnorHamir();
                     f6.Show();
+                    break;
+                case 7:
+                    FormHamir f7 = new FormHamir();
+                    f7.Show();
                     break;
                 default:
                     break;

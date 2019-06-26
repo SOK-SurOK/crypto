@@ -118,8 +118,14 @@
     <EmbeddedResource Include="FormFiatHamir.resx">
       <DependentUpon>FormFiatHamir.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormHamir.resx">
+      <DependentUpon>FormHamir.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMagma.resx">
       <DependentUpon>FormMagma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOngoHnorHamir.resx">
+      <DependentUpon>FormOngoHnorHamir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRSA.resx">
       <DependentUpon>FormRSA.cs</DependentUpon>
