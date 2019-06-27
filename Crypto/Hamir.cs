@@ -12,6 +12,22 @@ namespace Crypto
         long[] R;
         long[] Si;
         long[] Sr;
+
+        public long[] myR
+        {
+            get
+            {
+                return R;
+            }
+        }
+
+        public long[] myS
+        {
+            get
+            {
+                return Sr;
+            }
+        }
         public void setKey(long m, long p, int k, int n)
         {
             if(Utils.IsTheNumberSimple(m) && Utils.IsTheNumberSimple(p) && m <p && k<=n)
