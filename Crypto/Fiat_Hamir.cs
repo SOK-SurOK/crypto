@@ -102,7 +102,8 @@ namespace Crypto
                 }
 
                 
-                V[i] = Utils.Mod( (S[i] * S[i]) , n);
+                //V[i] = Utils.Mod( (S[i] * S[i]) , n);
+                V[i] = Utils.Mod(Utils.getMulObr(n, (S[i] * S[i])), n);
             }
 
         }

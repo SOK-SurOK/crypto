@@ -57,8 +57,8 @@ namespace Crypto
 
             for (int i = 0; i < N; i++)
             {
-                //R[i] = i + 1;
-                R[i] = rnd.Next(1, maxi);
+                R[i] = i + 1;
+                //R[i] = rnd.Next(1, maxi);
             }
 
             for (int i = 0; i < N; i++)
@@ -101,7 +101,7 @@ namespace Crypto
                 {
                     if(i != ri[j])
                     {
-                        ret *= R[ri[j]] / (R[ri[j]] - R[i]);
+                        ret *= R[ri[j]] *Utils.getMulObr2(P, (R[ri[j]] - R[i]));
                     }
                 }
                

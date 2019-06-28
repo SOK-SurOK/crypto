@@ -68,7 +68,8 @@ namespace Crypto
 
         public long Encrypt(long z)
         {
-            return Utils.Mod(z/K, rsa.myN); //((z/K) % N);
+            return Utils.Mod(z*Utils.Mod(Utils.getMulObr(rsa.myN,K),rsa.myN), rsa.myN); //((z/K) % N);
+            //return Utils.Mod(z/K, rsa.myN); //((z/K) % N);
         }
 
 

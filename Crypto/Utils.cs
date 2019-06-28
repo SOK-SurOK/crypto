@@ -8,6 +8,19 @@ namespace Crypto
 {
     class Utils
     {
+        public static long getMulObr(long a, long b)
+        {
+            long x = 0, y = 0;
+            long nod = Utils.gcd(a, b, out x, out y);
+            return y;
+        }
+
+        public static long getMulObr2(long a, long b)
+        {
+            long x = 0, y = 0;
+            long nod = Utils.gcd(a, b, out x, out y);
+            return Utils.Mod(y, a);
+        }
         public static long Mod(long n, long d)
         {
             long result = n % d;

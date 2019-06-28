@@ -23,7 +23,8 @@ namespace Crypto
             try
             {
                 ohh.SetKeys(Convert.ToInt64(textBoxP.Text), Convert.ToInt64(textBoxQ.Text), Convert.ToInt32(textBoxMax.Text));
-                textBoxX.Text = "0";
+                textBoxX.Text = ohh.myK.ToString();
+                textBoxY.Text = ohh.myN.ToString();
             }
             catch (Exception ex)
             {

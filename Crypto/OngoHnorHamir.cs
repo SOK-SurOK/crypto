@@ -61,7 +61,7 @@ namespace Crypto
                 }
                 K = k;
 
-                H = Utils.Mod(-k * k, N);
+                H = -Utils.getMulObr(N, K*K);
             }
             else
             {
@@ -83,20 +83,20 @@ namespace Crypto
             }
             else
             {
-                S1 = Utils.Mod( (x/y + y)/2, N);
-                S2 = Utils.Mod(K * (x / y + y) / 2, N);
+                S1 = Utils.Mod(Utils.getMulObr(N, 2)*(x * Utils.getMulObr(N, y)+ y), N);
+                S2 = Utils.Mod(Utils.getMulObr(N, 2) * K * (x * Utils.getMulObr(N, y) + y), N);
             }
         }
 
 
         public bool isTrue(long x)
         {
-            return x == S1 + S2 * H;
+            return x == S1*S1 + S2*S2*H;
         }
 
         public long getY(long x)
         {
-            return Utils.Mod(x / (S1+(long)Math.Pow(x, -K)), N);
+            return Utils.Mod(x* Utils.getMulObr(N, S1+S2*Utils.getMulObr(N, K)  ), N);
         }
     }
 }
