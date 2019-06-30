@@ -61,7 +61,7 @@ namespace Crypto
                 }
                 K = k;
 
-                H = -Utils.getMulObr(N, K*K);
+                H = Utils.Mod(-Utils.getMulObr(N, K*K),N);
             }
             else
             {
@@ -83,8 +83,8 @@ namespace Crypto
             }
             else
             {
-                S1 = Utils.Mod(Utils.getMulObr(N, 2)*(x * Utils.getMulObr(N, y)+ y), N);
-                S2 = Utils.Mod(Utils.getMulObr(N, 2) * K * (x * Utils.getMulObr(N, y) + y), N);
+                S1 = Utils.Mod(Utils.getMulObr2(N, 2)*(x * Utils.getMulObr2(N, y)+ y), N);
+                S2 = Utils.Mod(Utils.getMulObr2(N, 2) * K * (x * Utils.getMulObr2(N, y) + y), N);
             }
         }
 
@@ -96,7 +96,7 @@ namespace Crypto
 
         public long getY(long x)
         {
-            return Utils.Mod(x* Utils.getMulObr(N, S1+S2*Utils.getMulObr(N, K)  ), N);
+            return Utils.Mod(x* Utils.getMulObr2(N, S1+S2*Utils.getMulObr2(N, K)  ), N);
         }
     }
 }
